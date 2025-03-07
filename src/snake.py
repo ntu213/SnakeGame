@@ -50,6 +50,8 @@ alive = True
 def play():
 	'''Program starting function'''
 
+	global clock, screen, head_color, body_color, food_color, facing, directions, moving_speed, alive
+
 	snake = Player()
 	borders = [
 		pygame.Rect(0, 0, 800, 10),

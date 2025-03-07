@@ -19,5 +19,5 @@ $> python3 -m pip install pygame
 Run
 
 ```bash
-$> python3 snake.py
+$> python3 src/snake.py
 ```

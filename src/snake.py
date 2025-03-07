@@ -2,7 +2,6 @@ import pygame
 import random
 import time
 
-pygame.init()
 
 class Player:
 	def __init__(self):
@@ -31,6 +30,8 @@ class Player:
 		self.body.append(self.last_pos)
 
 
+pygame.init()
+
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode((800, 500))
 pygame.display.set_caption("Snake")
@@ -45,53 +46,60 @@ directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
 moving_speed = 10
 alive = True
 
-snake = Player()
-borders = [
-	pygame.Rect(0, 0, 800, 10),
-	pygame.Rect(0, 0, 10, 500),
-	pygame.Rect(0, 490, 800, 10),
-	pygame.Rect(790, 0, 10, 500)
-]
 
-apple = pygame.Rect(random.randint(10, 780), random.randint(10, 480), 5, 5)
+def play():
+	'''Program starting function'''
 
-running = True
+	snake = Player()
+	borders = [
+		pygame.Rect(0, 0, 800, 10),
+		pygame.Rect(0, 0, 10, 500),
+		pygame.Rect(0, 490, 800, 10),
+		pygame.Rect(790, 0, 10, 500)
+	]
 
-while running:
+	apple = pygame.Rect(random.randint(10, 780), random.randint(10, 480), 5, 5)
 
-	snake.move(directions[facing])
+	running = True
 
-	screen.fill((0, 0, 0))
-	for box in borders:
-		pygame.draw.rect(screen, (255, 255, 255), box)
-		if box.colliderect((snake.x, snake.y, 10, 10)):
-			alive=False
+	while running:
 
-	if apple.colliderect((snake.x, snake.y, 10, 10)):
-		snake.add()
-		apple = pygame.Rect(random.randint(10, 780), random.randint(10, 480), 5, 5)
+		snake.move(directions[facing])
 
-	pygame.draw.rect(screen, food_color, apple)
+		screen.fill((0, 0, 0))
+		for box in borders:
+			pygame.draw.rect(screen, (255, 255, 255), box)
+			if box.colliderect((snake.x, snake.y, 10, 10)):
+				alive=False
 
-	snake.show(screen)
-	running = alive
+		if apple.colliderect((snake.x, snake.y, 10, 10)):
+			snake.add()
+			apple = pygame.Rect(random.randint(10, 780), random.randint(10, 480), 5, 5)
 
-	for event in pygame.event.get():
-		if event.type == pygame.QUIT or pygame.key.get_pressed()[27]:
-			pygame.quit()
-			exit()
+		pygame.draw.rect(screen, food_color, apple)
 
-	keys = pygame.key.get_pressed()
-	if keys[pygame.K_RIGHT] and facing != 1: facing = 0
-	elif keys[pygame.K_LEFT] and facing != 0: facing = 1
-	elif keys[pygame.K_DOWN] and facing != 3: facing = 2
-	elif keys[pygame.K_UP] and facing != 2: facing = 3
+		snake.show(screen)
+		running = alive
 
-	# if keys[pygame.K_KP_0]: snake.add()
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT or pygame.key.get_pressed()[27]:
+				pygame.quit()
+				exit()
 
-	pygame.display.flip()
-	clock.tick(10)
+		keys = pygame.key.get_pressed()
+		if keys[pygame.K_RIGHT] and facing != 1: facing = 0
+		elif keys[pygame.K_LEFT] and facing != 0: facing = 1
+		elif keys[pygame.K_DOWN] and facing != 3: facing = 2
+		elif keys[pygame.K_UP] and facing != 2: facing = 3
 
-time.sleep(1)
+		# if keys[pygame.K_KP_0]: snake.add()
 
-pygame.quit()
+		pygame.display.flip()
+		clock.tick(10)
+
+	time.sleep(1)
+
+	pygame.quit()
+
+if __name__ == "__main__":
+	play()

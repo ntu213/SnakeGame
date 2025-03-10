@@ -25,3 +25,13 @@ $> python3 -m pip install pygame
 ```bash
 $> python3 src/snake.py
 ```
+
+### Controls
+
+| Hotkey | Control |
+|--|--|
+| Escape | Stop the game |
+| Arrow Up | Move Up |
+| Arrow Down | Move Down |
+| Arrow Left | Move Left |
+| Arrow Right | Move Right |

@@ -5,9 +5,9 @@ A classic Snake Game made with PyGame
 
 <img src="Demo.gif">
 
-## How to Run
+## How to Use
 
-Install dependencies
+### Install dependencies
 
 ```bash
 $> apt install python3
@@ -16,7 +16,7 @@ $> apt install python3
 $> python3 -m pip install pygame
 ```
 
-Run
+### Run
 
 ```bash
 $> python3 src/snake.py
